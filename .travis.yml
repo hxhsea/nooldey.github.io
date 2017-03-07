@@ -1,0 +1,35 @@
+language: node_js
+node_js: stable
+
+# Travis-CI Caching
+cache:
+  directories:
+    - node_modules
+
+#Build cycle
+install:
+  - npm install -g hexo-cli
+  - npm install
+
+before_script:
+  - git config --global user.name "nooldey"
+  - git config --global user.email 'openzws@163.com'
+  
+script:
+  - hexo generate
+  - hexo deploy
+
+after_success:
+  - cd public
+  - git add .
+  - git commit -m 'Update from travis"
+  - git push -f "https://${GH_TOKEN}@${GH_REF}" master:gh-pages
+#Build cycle end
+
+branches:
+  only:
+    - master
+env:
+ global:
+   - GH_REF: github.com/nooldey/travis-blog.git
+   - secure: "Jg+IZyDG9tiffdfZrt5IIOGDw75N3WaaToSSwlJn+QK41srPJS5g3Lw+eBDauUqq+rk4Z/yn6yVtm6TQ8GBHVkhbGuxLsRsj8Sk6t2AnzCsp5QrML2qFWYDZ42EASDg61sWK0bSmvZWG/NAA9YRhTDzTz9+RSYqjc3qH2LUcphpU1LckpXAmd0boSpt0jpQQwbeRk3JFawhD30ZGDinPfJ2ck5QJMCUy7cfDB0M+TE6Zu7rVO6OjjKFVJpSm1OJo6e7JkjULrIYdxbMME9r2x8j2jK7AF1L2/qSqu9QB/3dPdaD1KJQvAnsDWESezvFH1dHNM6RiQFje1YvYsXkE4WpIfFXzrTFBzfAfUpaKP2gW1DOH4U459Qm737et0xJjc9YwDLh+Lt0+YDsGfjJkAGh8KoLj6z7SVin7dZJbcToCWs5wb8rfJfL6SiNUa4XsW9yHj/mpTLYuup8xl2ZahYvFeDGu3P0ZfbF3YMIF1RoBMPqhdPa7zUnnQA8RVdll7mQght64QK7g5wLOcfIY38ZzN5C12hfTKE1RYfXCwMO1gkIaQXZFTs+lUpIlIT9wBVfTgfIfjZDjn8Aayev70OCk8qWRE72uP8DnvtrzY/ZA62f4S70RcXfGcjOlzX2LYZ0W8Lo4P2jUTMYoGIeCVnYcUMyHUnIiSe1C8hkCOyU="
