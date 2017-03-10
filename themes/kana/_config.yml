@@ -9,7 +9,7 @@ rss: /atom.xml
 
 # layout config
 avatar: true
-animation: false
+animation: true
 
 # Content
 
