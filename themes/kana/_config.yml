@@ -1,0 +1,17 @@
+# Header
+menu:
+  首页: /
+  归档: /archives
+  关于: /about
+  分类: /categories
+  标签: /tags
+rss: /atom.xml
+
+# layout config
+avatar: false
+animation: false
+
+# Content
+
+description: Test my blog.
+

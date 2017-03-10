@@ -1,0 +1,35 @@
+<% if (pagination == 2){ %>
+<div class="stream-title">Posts</div>
+<div class="stream-list">
+    <% page.posts.each(function(post){ %>
+    <%- partial('stream-item', {post: post, index: true}) %>
+    <% }) %>
+</div>
+<% if (page.total > 1){ %>
+<div class="posts-nav">
+    <%- paginator({
+        prev_next: false
+    }) %>
+</div>
+<% } %>
+<% } else { %>
+<% var last; %>
+<% site.posts.sort('date', -1).each(function(post, i){ %>
+<% var year = post.date.year(); %>
+<% if (last != year){ %>
+<% if (last != null){ %>
+</ul></section>
+<% } %>
+<% last = year; %>
+<section class="archives-wrap">
+    <div class="archive-year-wrap">
+        <h3 class="archive-year"><%= year %></h3>
+    </div>
+    <ul class="archives">
+        <% } %>
+        <%- partial('archive-post', {post: post, even: i % 2 == 0}) %>
+        <% }) %>
+        <% if (site.posts.length){ %>
+    </ul></section>
+<% } %>
+<% } %>
