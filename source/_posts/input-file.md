@@ -1,7 +1,11 @@
 ---
 title: 修复input[type=file]在EDGE下无限弹出的问题
-date: 2017-03-08 19:23:35
+categories:
+  - 技术一二
 tags:
+ - html
+ - 前端开发
+date: 2017-03-08 19:23:35
 ---
 
 
