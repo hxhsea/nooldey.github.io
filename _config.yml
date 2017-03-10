@@ -3,10 +3,10 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: 碎碎念ZWS
-subtitle: 记录敲过的代码、走过的人生
-description: 记录WordPress前端开发/功能拓展の代码，其他网络技术维护笔记
-author: 碎碎念ZWS
+title: 前端笔记
+subtitle: 前端开发笔记、vuejs使用技巧
+description: 要做一个爱写笔记的攻城狮
+author: NOOLDEY
 language: zh-Hans
 timezone:
 

@@ -8,10 +8,10 @@ menu:
 rss: /atom.xml
 
 # layout config
-avatar: false
+avatar: true
 animation: false
 
 # Content
 
-description: Test my blog.
+description: 做一个诗情画意的码农
 
