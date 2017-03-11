@@ -30,6 +30,7 @@ after_success:
 branches:
   only:
     - source
+    - master
 env:
  global:
    - GH_REF: github.com/nooldey/nooldey.github.io.git
