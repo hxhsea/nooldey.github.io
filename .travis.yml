@@ -1,37 +1,30 @@
 language: node_js
 node_js: stable
-
-# Travis-CI Caching
 cache:
   directories:
-    - node_modules
-
-#Build cycle
+  - node_modules
 install:
-  - npm install -g hexo
-  - npm install -g hexo-cli
-  - npm install
-
+- npm install -g hexo
+- npm install -g hexo-cli
+- npm install
 before_script:
-  - git config --global user.name "nooldey"
-  - git config --global user.email 'openzws@163.com'
-  
+- git config --global user.name "nooldey"
+- git config --global user.email 'openzws@163.com'
+- sed -i'' "s~git@github.com:nooldey/nooldey.github.io.git~https://${REPO_TOKEN}:x-oauth-basic@github.com/nooldey/nooldey.github.io.git~" _config.yml
 script:
-  - hexo clean
-  - hexo generate
-
-after_success:
-  - cd public
-  - git init
-  - git add .
-  - git commit -m 'Update from travis"
-  - git push -f "https://${GH_TOKEN}@${GH_REF}" master:master
-#Build cycle end
-
+- hexo clean
+- hexo g
+- hexo d
+# after_success:
+# - cd public
+# - git init
+# - git add .
+# - git commit -m 'Update from travis"
+# - git push -f "https://${GH_TOKEN}@${GH_REF}" master:master
 branches:
   only:
-    - source
+  - source
 env:
- global:
-   - GH_REF: github.com/nooldey/nooldey.github.io.git
-   - secure: "xsr+qD8r1GfkFveT9CjrL3g+Yvi79YcxVW+hDolqD2nmzh88b22Ha9koL6Ib7beU6Ho6TB+UAhmUjrnnwOcDtYaWDH25es+LvsQKq3DHJavYNN4m269rS20VAYsAq9N89YDttqzcktq0WO2Mmm4sKVmlqqTkUATr0ViV3icdnK+IUqLaJJMT+2Rg2hrrI9U8P2HwmaBwRaXQmGQfqNlbdjIGOy467r2bEnEWuYsXwK8/Wum3ZT6bVyjkttNxtCMaJ7kHQBxSXPfP60MErNNSui44YMh+X2wQBFCnCRCs/AmRm4hxv9eyRnYQQ31tD2Kx+Rl9syWh646xd2TQxHMwuarJTK5v0ot+x4nnQM2MhRV4QygokAkMRcO1PHfTYydzAD6gSEgZosisReqmhEeyzOhMekr/itf6k2BEIXqrxICzjwP52guw6lhMHefBgWorjzDJMc4Kov2iHm91ydqz/p0vhdZFRyHoIIn5QH6rm8ooW8WPpsodgxW09biTUo2bhdqq2XkrIFg6MK8AQXTha63FXD7d3R/XXojk8fBidTtZ+MUti9mKV0brqLm4U+lfQt67kYz1YKtL1T7558Ub/KyZY13xO7zFwP+iAKMzx9kLVQhqUZeTlCghGVjPNkNvA7zRD93q38vpLViEAWswNVeWVntbElP7mR+ApxmXEuo="
+  global:
+  - GH_REF: github.com/nooldey/nooldey.github.io.git
+  - secure: hIYpDCqLwCXoFkLzMwuAHxMOACjhGPs5l97HNGk6CEppy57prKIrDyzMpbEjOYX7URDffjHUSVwShVMMr2oMH+4SRhhqNLN3Xko+aSaxBhmHKiibx4TSTunkjZfYqXSJUKLBdC2tGhYSUQHYwJVeJXM+yPjM27sFbSWsU15NgBY6MQrr5ZZX2Hyk7FLT8i22bKqmkNuVSnqv9W6StPaYI+0fdwlIHe2R57OhX6etsAYzhs5snoVKl71PQz6U+lSqm2JG8+YA2v26ca8keBCtVwMZ+WHUeJWyHjagS6twd5+AJCIHkTsvJM8cFQuuxa1SKT782ClGuddKPvTQmXJuy1Wcf/M1ShrTWBtqPA/0T5UcNgI6yWOGPN0WHotx1sC5yytHxaEu0wKWYZ8xweHQ+bPbr1nU170+M9kgBaejifAACXyG0xTKwdkVhu9J+sefO21RX+xSl3cnKtbzz8XKFzogqn7PXcAKDlyC/ywp2gowVCkdoaTTnhihSNl62bLltKvJ1FFdfdiKMfQsJCH9TmEC0U0hyocHdtOreD2sHHOv47xvPYZuzsaoyhHBiJ1WyMypfEmJ4rUv6PI774M9mdC1YXUwHPxiPR1i+WGwGImfsly0qAoum8oVjW8CR+r6NBRzHWb1qv94j+gr0XE43baGGqz4rYXvfUmNXbnNVAU=
